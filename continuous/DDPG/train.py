@@ -12,7 +12,7 @@ EVAL_EPISODES = 5
 MEMORY_SIZE = int(1e6)
 BATCH_SIZE = 100
 GAMMA = 0.99
-TAU = 0.005
+DECAY = 0.995
 ACTOR_LR = 1e-3
 CRITIC_LR = 1e-3
 EXPL_NOISE = 0.1  # Std of Gaussian exploration noise
@@ -83,7 +83,7 @@ def main():
     # Initialize model, algorithm, agent, replay_memory
     model = DDPGModel(obs_dim, action_dim, max_action)
     algorithm = DDPG(
-        model, gamma=GAMMA, tau=TAU, actor_lr=ACTOR_LR, critic_lr=CRITIC_LR)
+        model, gamma=GAMMA, decay=DECAY, actor_lr=ACTOR_LR, critic_lr=CRITIC_LR)
     agent = DDPGAgent(algorithm, action_dim, expl_noise=EXPL_NOISE)
     replay_buffer = ReplayBuffer(
         max_size=MEMORY_SIZE, obs_dim=obs_dim, act_dim=action_dim)

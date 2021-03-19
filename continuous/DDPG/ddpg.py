@@ -6,7 +6,7 @@ from copy import deepcopy
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-class DDPG(nn.Module):
+class DDPG(object):
     def __init__(self,
                  model,
                  gamma=None,
